@@ -22,57 +22,67 @@ What classes?
 
 - Need a way to store the items. list? [] __init__ method? 
 - ShoppingBasket class - Item class 
+- See wireframe for more design details
 
 ## Testing the Class system: 
 Integration test:
-- Making sure that everything works together
-- Testing that elements of the code that relies on each other work well together
+- Making sure that everything works together.
+- Testing that elements of the code that relies on each other work well together - making sure depencies are not causing issues.
 
 Unit test: 
-- A single unit of code on its own (method).
+- A single unit of code tested on its own (often methods tested in isolation).
+- We need to make sure there are no dependencies when testing units. 
 
 ### Create Examples as Integration Tests:
--> Whole system and how it'll be used
+
+These are examples of how the whole system will be used, and how each class will "integrate" with the others.
 
 
+```
 """
 Given a library
 When we add two tracks
 We see those tracks reflected in the tracks list
 """
+
 library = MusicLibrary()
 track_1 = Track("Carte Blanche", "Veracocha")
 track_2 = Track("Synaesthesia", "The Thrillseekers")
 library.add(track_1)
 library.add(track_2)
 library.tracks # => [track_1, track_2]
+```
 
-
+```
 """
 When I create an item
 I want to be able to add it to teh shopping basket
-And check it's in the basket
 """
+
 item = Item("box", 5)
 basket = ShoppingBasket()
 basket.add_items(item)
 basket.items => [item]
+```
 
 
+```
 """
 When I create an item
 I want to be able to add it to the shopping basket
 And then delete it if it was a mistake 
 I want to be able to give my delete method the name of the item, and it will find and delete it
 """
+
 item = Item("box", 5)
 item2 = Item("cookies", 6)
 basket = ShoppingBasket()
 basket.add_items(item)
 basket.add_items(item2)
 basket.delete_item("box") -> in my implementation, I will need to think about how to identify which item to delete
+```
 
-
+```
 """
 I want to be able to sort the items in my basket by price
 I want to to sort them by highest or lowest price
@@ -86,7 +96,8 @@ basket.sort_by_item(true) -> the order will be lowest to highest
 basket.sort_by_item(false) -> the order will be highest to lowest
 
 basket.item -> [{"name": box, "price": 5}, {}]
-
+```
 
 ### Create Examples as Unit Tests: 
--> Looking at a closer level how each method will be implemented
+
+We'll look at a each element in our code at a closer level by implementing the test cases directly today. 
